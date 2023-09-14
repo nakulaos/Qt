@@ -123,7 +123,7 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void GameWindow::drawChessPieces(QPainter &painter)
 {
-	const ChessBoard& board=this->m_eventcenter.getChessGame().getBoard();
+	const ChessBoard& board=this->m_eventcenter.getChessGame()->getBoard();
 	//绘制黑方棋子
 	for(auto it =board.getConstBlackPieces().begin();
 		it!=board.getConstBlackPieces().end();it++)
@@ -184,7 +184,7 @@ double GameWindow::getDistance() const
 	return m_distance;
 }
 
-ChessGame &GameWindow::getChessGame() const
+ChessGame* GameWindow::getChessGame() const
 {
 	// TODO: 在此处插入 return 语句
 	return this->m_eventcenter.getChessGame();

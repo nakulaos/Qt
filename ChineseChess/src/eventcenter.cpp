@@ -1,23 +1,32 @@
 #include "eventcenter.h"
 
-EventCenter::EventCenter():w(*this)
+EventCenter::EventCenter()
 {
 	
 }
-
+/*
 void EventCenter::show()
 {
 	w.show();
 }
+*/
 
 void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 {
 	qDebug()<<"已进入evententer movechess";
-	this->getChessGame().move(fromCol,fromRow,toCol,toRow);
+	this->getChessGame()->move(fromCol,fromRow,toCol,toRow);
 }
 
-ChessGame& EventCenter::getChessGame()
+void EventCenter::startGame()
+{
+	m_game = new ChessGame;
+	m_w = new GameWindow(*this);
+	m_w->show();
+	
+}
+
+ChessGame* EventCenter::getChessGame()
 {
 	// TODO: 在此处插入 return 语句
-	return game;
+	return m_game;
 }

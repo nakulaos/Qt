@@ -5,6 +5,6 @@ int main(int argc,char* argv[])
 {
 	QApplication a(argc,argv);
 	EventCenter e;
-	e.show();
+	e.startGame();
 	return a.exec();
 }

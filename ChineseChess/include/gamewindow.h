@@ -50,7 +50,7 @@ public:
 	double getChessR()const;
 	double getChessOffset()const;
 	double getDistance()const;
-	ChessGame& getChessGame()const;
+	ChessGame* getChessGame()const;
 
 
 

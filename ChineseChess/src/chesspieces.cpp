@@ -72,7 +72,7 @@ bool Horse::canMoveTo(int toCol,int toRow) const
 		{
 			if((this->getCol()+canJumpPoint[i][0]==toCol)
 			&&(this->getRow()+canJumpPoint[i][1]==toRow)
-			&&(mboard.getChess(this->getCol()+horseObstacle[i][0],this->getRow()+horseObstacle[i][1]))
+			&&(mboard.getChess(this->getCol()+horseObstacle[i][0],this->getRow()+horseObstacle[i][1])==nullptr)
 			)
 			{
 				return true;
@@ -180,7 +180,7 @@ bool Elephant::canMoveTo(int toCol,int toRow)const
 
 				if((this->getCol()+canJumpPoint[i][0]==toCol)
 				&&(this->getRow()+canJumpPoint[i][1]==toRow)
-				&&(mboard.getChess(this->getCol()+elephantObstacle[i][0],this->getRow()+elephantObstacle[i][1]))
+				&&(mboard.getChess(this->getCol()+elephantObstacle[i][0],this->getRow()+elephantObstacle[i][1]))==nullptr
 				)
 				{
 					return true;

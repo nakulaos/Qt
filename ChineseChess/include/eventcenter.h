@@ -12,8 +12,8 @@
 class EventCenter:public QObject
 {
 protected:
-	ChessGame game;
-	GameWindow w;
+	ChessGame* m_game;
+	GameWindow* m_w;
 	//ChessVoice m_voice;
 	
 	
@@ -23,9 +23,10 @@ public:
 	EventCenter();
 	void show();
 	void moveChess(int fromCol,int fromRow,int toCol,int toRow);
+	void startGame();
 
 
-	ChessGame& getChessGame();
+	ChessGame* getChessGame();
 
 
 };
