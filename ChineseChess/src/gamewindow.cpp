@@ -105,8 +105,11 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 
 	if(this->selectedLocation.size()==4)
 	{
+		/*
 		qDebug()<<"selectLocation----"<<"yCol xRow  "<<this->selectedLocation[0]<<this->selectedLocation[1]
 			<<this->selectedLocation[2]<<this->selectedLocation[3];
+		*/
+		
 		emit finishMoveed(this->selectedLocation[0],this->selectedLocation[1],
 			this->selectedLocation[2],this->selectedLocation[3]);
 		this->selectedLocation.clear();

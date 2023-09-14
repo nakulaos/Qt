@@ -16,6 +16,8 @@ class EventCenter:public QThread
 protected:
 	ChessGame* m_game;
 	GameWindow* m_w;
+	ChessVoice* m_voice;
+
 	//ChessVoice m_voice;
 	
 	
@@ -29,6 +31,7 @@ public:
 
 
 	ChessGame* getChessGame();
+	ChessVoice* getChessVoice();
 
 signals:
 	void getState(int value);

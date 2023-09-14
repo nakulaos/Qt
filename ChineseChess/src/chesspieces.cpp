@@ -169,7 +169,7 @@ bool Elephant::canMoveTo(int toCol,int toRow)const
 	};
 
 	if(mboard.getChess(toCol,toRow)==nullptr
-		|| mboard.getChess(toCol,toRow)->getTeam()==this->getTeam())
+		|| mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		/*判断是否属于我方的区域*/
 		if(mboard.WhoArea(toCol,toRow)==this->getTeam())
@@ -215,7 +215,7 @@ bool Adviser::canMoveTo(int toCol,int toRow)const
 
 
 	if(mboard.getChess(toCol,toRow)==nullptr
-		|| mboard.getChess(toCol,toRow)->getTeam()==this->getTeam())
+		|| mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		if(this->getTeam()==mboard.WhoArea(toCol,toRow)&&mboard.isNineArea(toCol,toRow)==true)
 		{
@@ -320,7 +320,7 @@ bool King::canMoveTo(int toCol,int toRow)const
 
 
 	if(mboard.getChess(toCol,toRow)==nullptr
-		|| mboard.getChess(toCol,toRow)->getTeam()==this->getTeam())
+		|| mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		if(this->getTeam()==mboard.WhoArea(toCol,toRow)&&mboard.isNineArea(toCol,toRow)==true)
 		{

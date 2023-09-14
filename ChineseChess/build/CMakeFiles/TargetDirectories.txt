@@ -1,3 +1,0 @@
-/home/nakulaos/codefield/qt/ChineseChess/build/CMakeFiles/ChineseChess.dir
-/home/nakulaos/codefield/qt/ChineseChess/build/CMakeFiles/edit_cache.dir
-/home/nakulaos/codefield/qt/ChineseChess/build/CMakeFiles/rebuild_cache.dir
