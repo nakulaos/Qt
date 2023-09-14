@@ -2,6 +2,7 @@
 #include"chesspiece.h"
 #include"chesspiecesfactory.h"
 #include<qalgorithms.h>
+#include<QDebug>
 
 #define RED 1
 #define BLACK 0
@@ -9,6 +10,13 @@
 ChessBoard::ChessBoard(int col,int row,QWidget *parent)
 	:AbstractBoard(col,row,parent)
 {
+	for(int i=0;i<=9;i++)
+	{
+		for(int j=0;j<=8;j++)
+		{
+			board[i][j]=nullptr;
+		}
+	}
 	//建立两个工厂
 	chessFactory *redFactory =new RedChessFactory;
 	chessFactory *blackFactory=new BlackChessFactory;
@@ -104,8 +112,12 @@ ChessBoard::~ChessBoard()
 
 int ChessBoard::getChessNumInSameLine(int fromCol,int fromRow,int toCol, int toRow)const
 {
+	if(fromCol==toCol&&fromRow==toRow)
+	{
+		return 0;
+	}
 	int chessSum=0;//计算棋子总数
-
+	qDebug()<<"getchessnuminsameline 1";
 	if(fromCol==toCol)
 	{
 		//判断谁是序号较小的那一行
@@ -116,8 +128,9 @@ int ChessBoard::getChessNumInSameLine(int fromCol,int fromRow,int toCol, int toR
 		/*判断中间是否有棋子*/
 		for(int i=minRow+1;i<maxRow;i++)
 		{
-			if(this->getChess(fromCol,i))
+			if(this->getChess(fromCol,i)!=nullptr)
 			{
+				qDebug()<<"i:"<<i;
 				chessSum++;
 			}
 		}
@@ -130,7 +143,7 @@ int ChessBoard::getChessNumInSameLine(int fromCol,int fromRow,int toCol, int toR
 
 		for(int i=minCol+1;i<maxCol;i++)
 		{
-			if(this->getChess(i,fromRow))
+			if(this->getChess(i,fromRow)!=nullptr)
 			{
 				chessSum++;
 			}
@@ -219,13 +232,24 @@ QVector<AbstractChessPiece *> &ChessBoard::getBlackPieces()
 	return black;
 }
 
-AbstractChessPiece *&ChessBoard::getChess(int col, int row)
+AbstractChessPiece*& ChessBoard::getChess(int col, int row)
 {
 	// TODO: 在此处插入 return 语句
+	qDebug()<<"abstractchesspieces getchess";
+	qDebug()<<"chess col:"<<col;
+	//qDebug()<<"chess board:"<<board[col][row]->getCol();
+	if(board[col][row]==nullptr)
+	{
+		qDebug()<<"null";
+	}
+	else
+	{
+		qDebug()<<"no null";
+	}
 	return board[col][row];
 }
 
-AbstractChessPiece *const &ChessBoard::getChess(int col, int row) const
+ AbstractChessPiece* const&  ChessBoard::getChess(int col, int row) const
 {
 	// TODO: 在此处插入 return 语句
 	return board[col][row];
@@ -233,9 +257,16 @@ AbstractChessPiece *const &ChessBoard::getChess(int col, int row) const
 
 void ChessBoard::removeChess(int col, int row)
 {
+	qDebug()<<"remove chess 1";
+	if(this->getChess(col,row)==nullptr)
+	{
+		return;
+	}
 	int team=this->getChess(col,row)->getTeam();
+	
 	if(team==0)
 	{
+		qDebug()<<"remove chess 1";
 		for(auto it=this->getBlackPieces().begin();
 		it!=this->getBlackPieces().end();
 		it++)

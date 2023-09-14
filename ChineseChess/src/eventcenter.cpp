@@ -12,10 +12,11 @@ void EventCenter::show()
 
 void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 {
+	qDebug()<<"已进入evententer movechess";
 	this->getChessGame().move(fromCol,fromRow,toCol,toRow);
 }
 
-ChessGame &EventCenter::getChessGame()
+ChessGame& EventCenter::getChessGame()
 {
 	// TODO: 在此处插入 return 语句
 	return game;

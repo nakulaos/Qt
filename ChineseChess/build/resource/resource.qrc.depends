@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/background.jpg</file>
+        <file>image/chess.svg</file>
+        <file>sound/backChess.wav</file>
+        <file>sound/eatChess.wav</file>
+        <file>sound/generalSound.wav</file>
+        <file>sound/moveChess.wav</file>
+        <file>sound/selectChess.wav</file>
+        <file>sound/WinSound.wav</file>
+    </qresource>
+</RCC>

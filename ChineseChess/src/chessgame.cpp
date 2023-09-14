@@ -1,4 +1,5 @@
 #include "chessgame.h"
+#include<QDebug>
 
 
 ChessGame::ChessGame():nextPlayer(Red)
@@ -13,13 +14,26 @@ const ChessBoard &ChessGame::getBoard() const
 
 bool ChessGame::move(int fromCol, int fromRow, int toCol, int toRow)
 {
+	/*
+	if(board.getChess(fromCol,fromRow)==nullptr)
+	{
+		return false;
+	}
+	*/
+	qDebug()<<"chessgame move 1 judge";
+	qDebug()<<"chessgeme move col row"<<fromCol<<fromRow;
+	qDebug()<<"team:"<<board.getChess(fromCol,fromRow)->getTeam()<<"    "<<this->getNextPlayer();
+	qDebug()<<"col"<<board.getChess(fromCol,fromRow)->getCol();
 	if(board.getChess(fromCol,fromRow)
 		&&board.getChess(fromCol,fromRow)->getTeam()==this->getNextPlayer())
 	{
+		qDebug()<<"chessgame move 2 judge";
 		if(board.getChess(fromCol,fromRow)->move(toCol,toRow))
 		{
+			qDebug()<<"chessgame move 3 judge";
 			if(this->getNextPlayer()==Red)
 			{
+				qDebug()<<"chessgame move 4 judge";
 				this->setNextPlayer(Black);
 			}
 			else

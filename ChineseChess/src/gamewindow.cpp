@@ -3,7 +3,20 @@
 #include<eventcenter.h>
 #include<QDebug>
 
-GameWindow::GameWindow(EventCenter& event):m_eventcenter(event)
+int GameWindow::doubleTransform(double num)
+{
+	if(num-int(num)>=0.5)
+	{
+		return int(num)+1;
+	}
+	else
+
+	{
+		return int(num);
+	}
+}
+
+GameWindow::GameWindow(EventCenter &event) : m_eventcenter(event)
 {
 	this->setChessR(45.0);
 	this->setDistance(90.0);
@@ -83,26 +96,26 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 		return;
 	}
 	QPoint realPoint = event->pos();
-	qDebug()<<"realPoint:"<<realPoint.x()<<realPoint.y();
-	int abstractRow=int(realPoint.x()-this->getChessOffset())/this->getDistance();
-	int abstractCol=int(realPoint.y()-this->getChessOffset())/this->getDistance();
+	qDebug()<<"realPoint----"<<"yCol:"<<realPoint.y()<<"     xRow:"<<realPoint.x();
+	int abstractRow=doubleTransform((realPoint.x()-this->getChessOffset())/this->getDistance());
+	int abstractCol=doubleTransform((realPoint.y()-this->getChessOffset())/this->getDistance());
 
 	this->selectedLocation.push_back(abstractCol);
 	this->selectedLocation.push_back(abstractRow);
 
 	if(this->selectedLocation.size()==4)
 	{
-		qDebug()<<"selectLocation:"<<this->selectedLocation[0]<<this->selectedLocation[1]
+		qDebug()<<"selectLocation----"<<"yCol xRow  "<<this->selectedLocation[0]<<this->selectedLocation[1]
 			<<this->selectedLocation[2]<<this->selectedLocation[3];
 		emit finishMoveed(this->selectedLocation[0],this->selectedLocation[1],
 			this->selectedLocation[2],this->selectedLocation[3]);
 		this->selectedLocation.clear();
-		this->update();
+		this->repaint();
 	}
 	else
 	{
 		emit finishSeleted();
-        this->update();
+        this->repaint();
 	}
 	
 	

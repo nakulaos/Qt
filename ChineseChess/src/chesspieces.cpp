@@ -1,5 +1,5 @@
 #include"chesspiece.h"
-
+#include<QDebug>
 Rook::Rook(int col,int row,int team,ChessBoard& chessBoard)
 	:AbstractChessPiece(col,row,team,chessBoard)
 {
@@ -105,12 +105,16 @@ bool Cannon::canMoveTo(int toCol,int toRow) const
 	//炮的走法，直线移动，不吃子
 	if(mboard.getChess(toCol,toRow)==nullptr)
 	{
+		qDebug()<<"已经进入cannon canmoveto 1";
+		qDebug()<<"getchesssameline返回值"<<mboard.getChessNumInSameLine(this->getCol(),this->getRow(),toCol,toRow);
 		if(mboard.getChessNumInSameLine(this->getCol(),this->getRow(),toCol,toRow)==0)
 		{
+			qDebug()<<"已经进入cannon canmoveto 2";
 			return true;
 		}
 		else
 		{
+			qDebug()<<"已经进入cannon canmoveto 3";
 			return false;
 		}
 	}

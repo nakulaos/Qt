@@ -1,0 +1,6 @@
+-I/home/nakulaos/codefield/qt/ChineseChess/./include
+-I/home/nakulaos/codefield/qt/ChineseChess
+-I/home/nakulaos/codefield/qt/ChineseChess/build
+-o
+/home/nakulaos/codefield/qt/ChineseChess/build/include/moc_chesspiece.cpp
+/home/nakulaos/codefield/qt/ChineseChess/include/chesspiece.h

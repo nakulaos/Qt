@@ -1,0 +1,6 @@
+-I/home/nakulaos/codefield/qt/ChineseChess/./include
+-I/home/nakulaos/codefield/qt/ChineseChess
+-I/home/nakulaos/codefield/qt/ChineseChess/cmake-build-debug
+-o
+/home/nakulaos/codefield/qt/ChineseChess/cmake-build-debug/include/moc_eventcenter.cpp
+/home/nakulaos/codefield/qt/ChineseChess/include/eventcenter.h

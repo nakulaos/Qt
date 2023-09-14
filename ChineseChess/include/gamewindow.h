@@ -31,6 +31,8 @@ protected:
 	bool m_alreadyFinishSelect;
 	QVector<double> selectedLocation;
 
+	int doubleTransform(double);
+
 public:
 	GameWindow(EventCenter& eventCenter);
 
