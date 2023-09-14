@@ -273,8 +273,8 @@ void ChessBoard::removeChess(int col, int row)
 		{
 			if((*it)->getCol()==col&&(*it)->getRow()==row)
 			{
+                delete *it;
 				this->getBlackPieces().erase(it);
-				delete *it;
 				break;
 
 			}
@@ -288,8 +288,9 @@ void ChessBoard::removeChess(int col, int row)
 		{
 			if((*it)->getCol()==col&&(*it)->getRow()==row)
 			{
+                delete *it;
 				this->getRedPieces().erase(it);
-				delete *it;
+
 				break;
 
 			}

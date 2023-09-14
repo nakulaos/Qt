@@ -14,12 +14,12 @@ const ChessBoard &ChessGame::getBoard() const
 
 bool ChessGame::move(int fromCol, int fromRow, int toCol, int toRow)
 {
-	/*
+	
 	if(board.getChess(fromCol,fromRow)==nullptr)
 	{
 		return false;
 	}
-	*/
+	
 	qDebug()<<"chessgame move 1 judge";
 	qDebug()<<"chessgeme move col row"<<fromCol<<fromRow;
 	qDebug()<<"team:"<<board.getChess(fromCol,fromRow)->getTeam()<<"    "<<this->getNextPlayer();

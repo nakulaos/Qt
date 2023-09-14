@@ -8,9 +8,11 @@
 #include"chessvoice.h"
 #include"gamewindow.h"
 #include<QObject>
+#include<QThread>
 
-class EventCenter:public QObject
+class EventCenter:public QThread
 {
+	Q_OBJECT
 protected:
 	ChessGame* m_game;
 	GameWindow* m_w;
@@ -28,7 +30,8 @@ public:
 
 	ChessGame* getChessGame();
 
-
+signals:
+	void getState(int value);
 };
 
 

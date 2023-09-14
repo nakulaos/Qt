@@ -65,7 +65,7 @@ bool Horse::canMoveTo(int toCol,int toRow) const
 
 
 	if(mboard.getChess(toCol,toRow)==nullptr
-		|| mboard.getChess(toCol,toRow)->getTeam()==this->getTeam())
+		|| mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		/*判断落脚点是否正确，以及是否被绊脚*/
 		for(int i=0;i<8;i++)
@@ -119,7 +119,7 @@ bool Cannon::canMoveTo(int toCol,int toRow) const
 		}
 	}
 	/*目的地有棋子，且不是自己阵容的*/
-	else if(mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
+	else if(mboard.getChess(toCol,toRow)!=nullptr&&mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		/*中间只有一个棋子*/
 		if(mboard.getChessNumInSameLine(this->getCol(),this->getRow(),toCol,toRow)==1)
@@ -255,7 +255,7 @@ bool Pawn::canCrossTheRiver()const
 bool Pawn::canMoveTo(int toCol,int toRow)const
 {
 	if(mboard.getChess(toCol,toRow)==nullptr
-		|| mboard.getChess(toCol,toRow)->getTeam()==this->getTeam())
+		|| mboard.getChess(toCol,toRow)->getTeam()!=this->getTeam())
 	{
 		int direction=(this->getTeam()==0)?1:-1;
 		if(this->getTeam()==mboard.WhoArea(this->getCol(),this->getRow()))
