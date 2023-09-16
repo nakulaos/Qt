@@ -17,6 +17,7 @@ protected:
 	ChessGame* m_game;
 	GameWindow* m_w;
 	ChessVoice* m_voice;
+	StartWindow* m_startWindow;
 
 	//ChessVoice m_voice;
 	
@@ -26,6 +27,7 @@ protected:
 public:
 	EventCenter();
 	void show();
+	void init();
 	void moveChess(int fromCol,int fromRow,int toCol,int toRow);
 	void startGame();
 

@@ -1,5 +1,6 @@
 #include "eventcenter.h"
 #include<QMessageBox>
+#include"ui_startwindow.h"
 
 EventCenter::EventCenter()
 {
@@ -11,6 +12,12 @@ void EventCenter::show()
 	w.show();
 }
 */
+
+void EventCenter::init()
+{
+
+
+}
 
 void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 {
@@ -37,7 +44,7 @@ void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 		mbox->setFont(QFont("FangSong", 16, QFont::Bold));
 		this->getChessVoice()->voiceWin();
 		mbox->show();
-		emit getState(1);
+		emit getState(0);
 
 	}
 	else if(state==1)
@@ -48,7 +55,7 @@ void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 		mbox->setFont(QFont("FangSong", 16, QFont::Bold));
         this->getChessVoice()->voiceWin();
         mbox->show();
-		emit getState(1);
+		emit getState(0);
 
 	}
 	else if(state==-1)
@@ -58,6 +65,7 @@ void EventCenter::moveChess(int fromCol, int fromRow, int toCol, int toRow)
 		mbox->setText(tr("本局结束，红方平局!"));
 		mbox->setFont(QFont("FangSong", 16, QFont::Bold));
         mbox->show();
+		emit getState(0);
 
 	}
 }
@@ -67,11 +75,19 @@ void EventCenter::startGame()
 	m_game = new ChessGame;
 	m_w = new GameWindow(*this);
 	m_voice = new ChessVoice(this);
-	m_w->show();
+	//m_w->show();
 	connect(this,&EventCenter::getState,m_w,&GameWindow::close);
 	connect(m_w,&GameWindow::finishSeleted,m_voice,&ChessVoice::voiceSelect);
 
+	m_startWindow  = new StartWindow;
 
+	m_startWindow->show();
+
+	auto m_startWindow_ui = m_startWindow->ui;
+	connect(m_startWindow_ui->pushButton_start,&QPushButton::clicked,m_w,&GameWindow::show);
+	//m_startWindow->hide();
+	
+	
 }
 
 ChessGame* EventCenter::getChessGame()
