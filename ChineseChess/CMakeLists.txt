@@ -13,6 +13,8 @@ set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_PREFIX_PATH  "/opt/Qt/6.2.4/gcc_64/lib/cmake")
 set(CMAKE_BUILD_TYPE "Debug")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 #设置可执行文件生成位置
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
 
@@ -62,7 +64,7 @@ qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
 qt6_add_resources(RES_FILES ${RESOURCE_FILES})
 
 
-#[[
+
 
 
 #设置ts文件名
@@ -110,7 +112,7 @@ endforeach()
 #add_custom_target(translations ALL DEPENDS ${QM_FILES})
 
 
-]]
+
 
 add_executable(${PROJECT_NAME} main.cpp
 				${HEADER_FILES}
@@ -121,7 +123,7 @@ add_executable(${PROJECT_NAME} main.cpp
 				${RES_FILES}
 				)
 
-#add_dependencies(${CMAKE_PROJECT_NAME} create_all_qm_files)
+add_dependencies(${CMAKE_PROJECT_NAME} create_all_qm_files)
 
 
 #link qt library

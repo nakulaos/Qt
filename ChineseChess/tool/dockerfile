@@ -1,0 +1,59 @@
+# 指定基础镜像源
+FROM ubuntu:22.04
+
+#设置时区，更新in软件
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata
+
+#更新必要的组件
+RUN apt-get update && apt-get install -y \
+ssh \
+build-essential \
+gcc \
+g++ \
+gdb \
+clang \
+cmake \
+rsync \
+tar \
+python3 \
+vim \
+automake \
+openssh-client \
+openssh-server \
+pkg-config \
+libxml2-dev \
+libsqlite3-dev  \
+git 
+
+#&& apt-get clean 
+
+RUN apt-get install sudo
+
+
+# 创建 nakulaos用户 密码asdasd 并且赋予不用密码进行 sudo 的权限
+RUN echo "#!/bin/bash\nadduser nakulaos << EOF\npassword\npassword\nasdasd\n\n\n\nY\nEOF" >> create_nakulaos.sh && \
+    chmod 755 create_nakulaos.sh && \
+    ./create_nakulaos.sh && \
+    gpasswd -a nakulaos sudo && \
+    rm create_nakulaos.sh && \
+    chmod 644 /etc/sudoers && \
+    echo "nakulaos ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+
+USER nakulaos
+
+VOLUME [ "/home/nakulaos/data" ]
+
+#RUN mkdir /home/nakulaos/demo
+
+#COPY ./src /home/nakulaos/demo
+
+#WORKDIR /home/nakulaos/demo
+
+#RUN sh build.sh
+
+#CMD ["./HelloWorld"]

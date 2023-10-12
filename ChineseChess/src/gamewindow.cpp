@@ -138,7 +138,8 @@ void GameWindow::drawChessPieces(QPainter &painter)
 		QRect rect(temp.x()-this->getChessR(),temp.y()-this->getChessR(),this->getDistance(),this->getDistance());
 
 		painter.setPen(QColor(0,0,0));
-		painter.drawEllipse(temp,this->getChessR(),this->getChessR());
+		painter.drawEllipse(temp, (int)this->getChessR(),(int)this->getChessR());
+		//painter.drawEllipse(temp,this->getChessR(),this->getChessR());
 		painter.drawText(rect,(*it)->getName(),QTextOption(Qt::AlignCenter));
 	}
 
@@ -152,7 +153,7 @@ void GameWindow::drawChessPieces(QPainter &painter)
 		QRect rect(temp.x()-this->getChessR(),temp.y()-this->getChessR(),this->getDistance(),this->getDistance());
 
 		painter.setPen(QColor(255,0,0));
-		painter.drawEllipse(temp,this->getChessR(),this->getChessR());
+		painter.drawEllipse(temp,(int)this->getChessR(),(int)this->getChessR());
 		painter.drawText(rect,(*it)->getName(),QTextOption(Qt::AlignCenter));
 	}
 }

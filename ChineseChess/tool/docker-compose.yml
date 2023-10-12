@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  myubuntu:
+    #build:
+      #context: .
+      #dockerfile: dockerfile
+    image: centos:8
+    container_name: docker_ubuntu_container
+    depends_on:
+      - m_mysql
+      - m_redis
+    #command: ["echo", "Hello from ubuntu"]
+    tty: true
+    command: ["/bin/bash"]
+    restart: always
+    volumes:
+      - ../src:/home/nakulaos/demo
+    ports:
+      - "8366:8366"
+    networks:
+      app-net:
+        ipv4_address: 172.21.0.2
+  m_redis:
+    image: redis:latest
+    ports:
+      - "10051:6379"
+    networks:
+      app-net:
+        ipv4_address: 172.21.0.4
+  
+  m_mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=asdasd
+      - MYSQL_DATABASE=goods_service
+      - MYSQL_USER=ikol
+      - MYSQL_PASSWORD=asdasd
+    networks:
+      app-net:
+        ipv4_address: 172.21.0.3
+    ports:
+      - "10050:3306"
+
+
+networks:
+  app-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24
+          gateway: 172.21.0.1
+
+
+
+  
+
